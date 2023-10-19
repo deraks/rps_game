@@ -1,5 +1,5 @@
 package rpsgroupe.rpsgame.controllers;
 
-public class computerController {
+public class ComputerController {
     
 }

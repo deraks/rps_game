@@ -1,5 +1,13 @@
 package rpsgroupe.rpsgame.controllers;
 
-public class userController {
-    
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class UserController {
+    // private PlayerService playerService;
+
+    // @Autowired
+    // public void setPlayerService(PlayerService playerService){
+    //     this.playerService = playerService;
+    // }
 }

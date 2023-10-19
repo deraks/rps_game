@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/product.css" th:href="@{/css/product.css}"/>
+</head>
+<body>
+    <nav th:insert="fragments/header :: nav" class="site-header sticky-top py-1"></nav> 
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <div class="col-md-11 mx-auto">
+          <h1 class="display-4 font-weight-normal">Let's Play Rock, Paper, Scissors.</h1>
+          <h5 class="font-weight-bold text-left mb-0">Things You Should Know</h5>
+          <p class="font-weight-normal text-left mb-0">Rock beats scissors, scissors beat paper, and paper beats rock.</p>
+          <p class="font-weight-normal text-left mb-0">Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</p>
+          <p class="font-weight-normal text-left mb-0">Use rock, paper, scissors to settle minor decisions or simply play to pass the time.</p>
+        </div>
+    </div>   
+    <div class="container">
+        <!-- Three columns of text below the carousel -->
+        <form class="form-horizontal"  th:object="${game}" th:action="@{/startGame}" method="post">
+            <div class="row mt-5">
+               <div th:each="move : ${moves}" class='col text-center'>
+                    <input th:field="*{playerMove}" th:value="${move}" type="radio" name="imgbackground"th:id="${move}" class="d-none imgbgchk">
+                  <label th:for="${move}">
+                    <img th:src="@{${'/img/'+move+'.png'}}" alt="rock">
+                    <div class="tick_container">
+                      <div class="tick"><i class="fa fa-check"></i></div>
+                    </div>
+                    </label>
+                </div>
+
+                <!-- <div th:each="move : ${moves}"  class="col-md-4 col-lg-4 col-sm-4">
+                    <label>
+                      <input th:field="*{playerMove}" th:value="${move}" type="radio" name="product" class="card-input-element" />
+                        <div class="card card-default card-input">
+                          <div class="card-header"> 
+                            <label class="custom-control-label" th:for="${#ids.prev('playerMove')}" th:text="${move}"></label>
+                        </div>
+                          <div class="card-body">
+                            Product specific content
+                          </div>
+                        </div>
+                    </label>
+                </div>-->
+                 
+                <!-- <div class="col-lg-4">
+                    <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>ROCK </h2>
+                </div><!-- /.col-lg-4 -->
+                <!-- <div class="col-lg-4">
+                    <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>PAPER</h2>
+                </div><!-- /.col-lg-4 -->
+                <!-- <div class="col-lg-4">
+                    <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>SCISSORS</h2>
+                </div>/.col-lg-4 -->
+            <!-- </div><!-- /.row -->
+            <!-- <div th:each="move : ${moves}">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" th:field="*{playerMove}" th:value="${move}" class="custom-control-input">
+                    <label class="custom-control-label" th:for="${#ids.prev('playerMove')}" th:text="${move}">model</label>
+                </div> --> 
+            </div>
+            <!-- <div class="form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="option1" name="option1" class="custom-control-input" th:value="${moves}" th:field="*{playerMove}">
+                    <label class="custom-control-label" for="option1">Option1</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="option2" name="option2" class="custom-control-input" th:value="${moves}" th:field="*{playerMove}">
+                    <label class="custom-control-label" for="option2">Option2</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="option3" name="option3" class="custom-control-input" th:value="${moves}" th:field="*{playerMove}">
+                    <label class="custom-control-label" for="option3">Option3</label>
+                </div>
+            </div> -->
+            <button type="submit" class="btn btn-outline-success btn-lg btn-block mt-5">Play</button>
+
+        </form>
+    </div>
+    <!-- <div class="container">
+        <div class="row mt-4">
+          <div class="col">
+            <div class="jumbotron">
+              <label>
+                <input type="radio" name="demo" class="card-input-element d-none" id="demo1">
+                <span class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+                Organization 1
+                </span>
+                </label>
+              <label class="mt-3">
+                <input type="radio" name="demo" class="card-input-element d-none" value="demo2">
+                <span class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+                Organization 2
+                </span>
+                </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+    
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              
+              <label>
+                <input type="radio" name="product" selected checked class="card-input-element" />
+      
+                  <div class="card card-default card-input">
+                    <div class="card-header">Product A</div>
+                    <div class="card-body">
+                      Product specific content
+                    </div>
+                  </div>
+      
+              </label>
+              
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              
+              <label>
+                <input type="radio" name="product" class="card-input-element" />
+      
+                  <div class="card card-default card-input">
+                    <div class="card-header">Product B</div>
+                    <div class="card-body">
+                      Product specific content
+                    </div>
+                  </div>
+              </label>
+              
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              
+              <label>
+                <input type="radio" name="product" class="card-input-element" />
+      
+                  <div class="card card-default card-input">
+                    <div class="card-header">Product C</div>
+                    <div class="card-body">
+                      Product specific content
+                    </div>
+                  </div>
+              </label>
+              
+            </div>
+        </div> -->
+        <!-- <div class="container parent">
+            <div class="row">
+                <div th:each="move : ${moves}" class='col text-center'>
+                <input th:field="*{playerMove}" th:value="${move}" type="radio" name="imgbackground" id="${move}" class="d-none imgbgchk">
+                  <label for="img1">
+                    <img th:src="@{/img/rock.png}" alt="rock">
+                    <div class="tick_container">
+                      <div class="tick"><i class="fa fa-check"></i></div>
+                    </div>
+                    </label>
+                </div>
+                <div class='col text-center'>
+                <input type="radio" name="imgbackground" id="img2" class="d-none imgbgchk" value="">
+                  <label for="img2">
+                    <img th:src="@{/img/scissors.png}" alt="scissors">
+                    <div class="tick_container">
+                      <div class="tick"><i class="fa fa-check"></i></div>
+                    </div>
+                  </label>
+                </div>
+                <div class='col text-center'>
+                <input type="radio" name="imgbackground" id="img3" class="d-none imgbgchk" value="">
+                  <label for="img3">
+                    <img th:src="@{/img/paper.png}" alt="paper">
+                    <div class="tick_container">
+                      <div class="tick"><i class="fa fa-check"></i></div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>  -->
+    <footer th:insert="fragments/footer :: footer"  class="text-muted"></footer> 
+</body>
+</html>
