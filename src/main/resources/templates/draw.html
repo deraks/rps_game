@@ -8,19 +8,19 @@
 <body>
   <nav th:insert="fragments/header :: nav" class="site-header sticky-top py-1"></nav> 
   <div class="container mt-5">
-      <h1> Draw</h1>
-      <a class="py-2 d-none d-md-inline-block" href="/startGame">Play again</a>
-      <div class="row">
-        <div class="col-lg-6 text-center">
-          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-6 text-center">
-          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-        </div><!-- /.col-lg-4 -->
-        <!-- /.col-lg-4 -->
-      </div>
+    <h1 class="display-4 font-weight-normal text-center">Draw</h1>
+    <div class="row mt-5">
+      <div class="col-lg-6 text-center">
+        <img class="rounded-circle" th:src="@{${'/img/'+player+'.png'}}" alt="player" width="140" height="140">
+        <h2>Player</h2>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-6 text-center">
+        <img class="rounded-circle" th:src="@{${'/img/'+comp+'.png'}}" alt="computer" width="140" height="140">
+        <h2>Computer</h2>
+      </div><!-- /.col-lg-4 -->
+      <!-- /.col-lg-4 -->
+    </div>
+    <a class="btn btn-outline-success btn-lg btn-block mt-5" href="/startGame">Play again</a>
   </div>
   <footer th:insert="fragments/footer :: footer"  class="text-muted fixed-bottom"></footer> 
 </body>

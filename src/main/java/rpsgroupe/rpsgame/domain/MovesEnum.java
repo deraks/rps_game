@@ -1,13 +1,13 @@
 package rpsgroupe.rpsgame.domain;
 
-public enum Moves {
+public enum MovesEnum {
     ROCK ("ROCK"),
     PAPER ("PAPER"),
     SCISSORS ("SCISSORS");
 
     private final String name;
     
-    Moves(String name) {
+    MovesEnum(String name) {
         this.name = name;
     }
     public String getName(){

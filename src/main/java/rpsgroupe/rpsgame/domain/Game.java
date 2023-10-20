@@ -13,9 +13,9 @@ public class Game {
     public void setId(Integer id) {
         this.id = id;
     }
-    private Moves move;
-    private Moves playerMove;
-    private Moves computerMove; 
+    private MovesEnum move;
+    private MovesEnum playerMove;
+    private MovesEnum computerMove; 
     private String winner;
     private Integer draws;
     private Integer playerWins;
@@ -40,22 +40,22 @@ public class Game {
     public void setComputerWins(Integer computerWins) {
         this.computerWins = computerWins;
     }
-    public Moves getMove() {
+    public MovesEnum getMove() {
         return move;
     }
-    public void setMove(Moves move) {
+    public void setMove(MovesEnum move) {
         this.move = move;
     }
-    public Moves getPlayerMove() {
+    public MovesEnum getPlayerMove() {
         return playerMove;
     }
-    public void setPlayerMove(Moves playerMove) {
+    public void setPlayerMove(MovesEnum playerMove) {
         this.playerMove = playerMove;
     }
-    public Moves getComputerMove() {
+    public MovesEnum getComputerMove() {
         return computerMove;
     }
-    public void setComputerMove(Moves computerMove) {
+    public void setComputerMove(MovesEnum computerMove) {
         this.computerMove = computerMove;
     }
     public String getWinner() {

@@ -21,47 +21,31 @@ public class GameController {
     public String startGame(Model model){
         Game game = new Game();
         model.addAttribute("game",game);
-        model.addAttribute("moves", Moves.values());
+        model.addAttribute("moves", MovesEnum.values());
         return "startGame";
     }
-    // @RequestMapping(value = "/startGame", method = RequestMethod.POST)
-    // public String compareMoves(Game game,Model model) {
-        
-    //     GameResult gameResult = gameService.compareMoves(game.getPlayerMove(),computerService.getMove());
-       
-    //     switch (gameResult) {
-    //     case DRAW:{
-    //         game.setDraws(1);
-    //         gameService.saveGameResult(game);
-    //         return "draw";
-    //         }
-    //     case COMPUTERWIN:{
-    //         game.setComputerWins(1);
-    //         gameService.saveGameResult(game);
-    //         return "redirect:/winner/computer";
-    //     }
-    //     case PLAYERWIN:{
-    //         game.setPlayerWins(1);
-    //         gameService.saveGameResult(game);
-    //         return "redirect:/winner/player";
-    //         }
-    //     }
-        
-    //     return "startGame";
-    // }
+    
     @RequestMapping(value = "/startGame", method = RequestMethod.POST)
     public String compareMoves(Game game,Model model) {
-        GameResult gameResult = gameService.compareMoves(game);
-
-        switch (gameResult) {
-        case DRAW:
-            return "draw";
-        case COMPUTERWIN:
-            return "redirect:/winner/computer";
-        case PLAYERWIN:
-           return "redirect:/winner/player";
-        default:
-            return "startGame";
+        if (game.getPlayerMove()!=null) {
+            MovesEnum playerMove = game.getPlayerMove();
+            MovesEnum computerMove = computerService.getMove();
+            game.setComputerMove(computerMove);
+            GameResultEnum gameResult = gameService.compareMoves(game);
+           
+            switch (gameResult) {
+            case DRAW:
+            return "redirect:/draw?comp="+computerMove+"&player="+playerMove;
+            case COMPUTERWIN:
+                return "redirect:/winner?win=computer&comp="+computerMove+"&player="+playerMove;
+            case PLAYERWIN:
+            // return "redirect:/winner/player";
+            return "redirect:/winner?win=player&comp="+computerMove+"&player="+playerMove;
+            default:
+                return "startGame";
+            }
+        } else {
+            return "redirect:/startGame";
         }
     }
 }

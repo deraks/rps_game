@@ -2,6 +2,7 @@ package rpsgroupe.rpsgame.controllers;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
 
+import rpsgroupe.rpsgame.domain.Game;
 import rpsgroupe.rpsgame.services.GameService;
 
 import org.springframework.ui.Model;
@@ -17,8 +18,8 @@ public class StatisticsController {
     }
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public String show(Model model){
-        model.addAttribute("games", gameService.listAllGames());
-        System.out.println("Returning students:");
+        Iterable<Game> game = gameService.listAllGames();
+        model.addAttribute("games", game);
         return "statistics";
     }  
 }

@@ -7,27 +7,26 @@
 </head>
 <body>
   <nav th:insert="fragments/header :: nav" class="site-header sticky-top py-1"></nav> 
-    <div class="container mt-5">
-      <h1> Statistics</h1>
-      <div th:if="${not #lists.isEmpty(games)}">
-        <h2>Games List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>playerWins</th>
-                <th>computerWins</th>
-                <th>Draws</th>
-            </tr>
-            <tr th:each="game : ${games}">
-                <td th:text="${game.id}">id</td>
-                <td th:text="${game.playerWins}">playerWins</td>
-                <td th:text="${game.computerWins}">computerWins</td>
-                <td th:text="${game.draws}">Draws</td>
-            </tr>
-        </table>
+  <div class="container mt-5">
+    <h1> Statistics</h1>
+    <div th:if="${not #lists.isEmpty(games)}">
+      <table class="table table-striped">
+          <tr>
+              <th>Id</th>
+              <th>playerWins</th>
+              <th>computerWins</th>
+              <th>Draws</th>
+          </tr>
+          <tr th:each="game : ${games}">
+              <td th:text="${game.id}">id</td>
+              <td th:text="${game.playerWins}">playerWins</td>
+              <td th:text="${game.computerWins}">computerWins</td>
+              <td th:text="${game.draws}">Draws</td>
+          </tr>
+      </table>
     </div>
-      <a class="py-2 d-none d-md-inline-block" href="/startGame">Play again</a>
+    <a class="btn btn-outline-success btn-lg btn-block mt-5" href="/startGame">Play again</a>
   </div>
-  <footer th:insert="fragments/footer :: footer"  class="text-muted"></footer> 
+  <footer th:insert="fragments/footer :: footer"  class="text-muted fixed-bottom"></footer> 
 </body>
 </html>
